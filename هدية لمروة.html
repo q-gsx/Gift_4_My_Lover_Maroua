@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌸 رسالة حب 💖</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lalezar&family=Cairo:wght@400;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ================================== */
+        /* 🎨 الألوان والتصميم "الكيوت🎀 */
+        /* ================================== */
+        :root {
+            /* الألوان : الزهري، الأزرق، الذهبي  */
+            --color-primary: #FF69B4;
+            --color-secondary: #ADD8E6;
+            --color-text: #F5F5F5;
+            --color-shadow: rgba(255, 105, 180, 0.7);
+            --bg-color-dark: #191970;
+            --font-main: 'Cairo', sans-serif;
+            --font-headings: 'Lalezar', cursive;
+            --font-poem: 'Amiri', serif;
+            --star-color: white;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        /* شريط التمرير (Scrollbar) بألوان ناعمة */
+        ::-webkit-scrollbar { width: 12px; }
+        ::-webkit-scrollbar-track { background: var(--bg-color-dark); }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(var(--color-primary), var(--color-secondary)); border-radius: 10px; border: 2px solid var(--bg-color-dark); }
+
+        body {
+            /* خلفية متوهجة  باللون الأزرق الداكن */
+            background: radial-gradient(circle at center, #2f2f54 0%, var(--bg-color-dark) 100%);
+            color: var(--color-text);
+            font-family: var(--font-main);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            cursor: none;
+        }
+
+        /* تأثير الفأرة  */
+        #cursor-dot {
+            width: 8px; height: 8px; background-color: var(--color-primary);
+            border-radius: 50%; position: fixed; top: 0; left: 0;
+            transform: translate(-50%, -50%); pointer-events: none; z-index: 9999;
+            box-shadow: 0 0 10px var(--color-primary), 0 0 20px var(--color-primary);
+        }
+
+        .trail {
+            position: fixed; background: var(--star-color); border-radius: 50%;
+            pointer-events: none; z-index: 9998; animation: fadeOut 1s forwards;
+        }
+
+        @keyframes fadeOut { to { opacity: 0; transform: scale(0); } }
+
+        #stars-background {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            overflow: hidden; z-index: -1;
+        }
+
+        .star {
+            position: absolute; background-color: var(--star-color); border-radius: 50%;
+            animation: twinkle 5s infinite ease-in-out;
+            box-shadow: 0 0 5px var(--star-color), 0 0 10px var(--star-color);
+        }
+
+        @keyframes twinkle { 0%, 100% { opacity: 0; transform: scale(0.8); } 50% { opacity: 1; transform: scale(1); } }
+
+        .love-letter-container {
+            width: 95%; max-width: 950px;
+            /* خلفية شبه شفافة زرقاء على الخلفية الداكنة */
+            background: rgba(25, 25, 112, 0.6);
+            border: 1px solid rgba(173, 216, 230, 0.4); /* حدود  ناعمة */
+            border-radius: 30px;
+            box-shadow: 0 0 100px var(--color-shadow), inset 0 0 25px rgba(255, 105, 180, 0.15);
+            padding: clamp(1.5rem, 5vw, 3rem);
+            opacity: 0; animation: fadeInContainer 2.5s 0.5s forwards;
+            margin: 60px 0; backdrop-filter: blur(10px);
+        }
+
+        @keyframes fadeInContainer { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+
+        .section {
+            padding: 4rem 0; margin-bottom: 4rem;
+            /* خط فاصل زهري  */
+            border-bottom: 2px dashed rgba(255, 105, 180, 0.5);
+            opacity: 0; transform: translateY(50px);
+            transition: all 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .section.visible { opacity: 1; transform: translateY(0); }
+        .section:last-of-type { border-bottom: none; }
+
+        h1 {
+            font-family: var(--font-headings); color: var(--color-secondary);
+            text-align: center; margin-bottom: 1.5rem;
+            /* توهج باللون الزهري والأزرق */
+            text-shadow: 0 0 30px var(--color-primary), 0 0 15px var(--color-shadow);
+            letter-spacing: 2px; animation: titleGlow 3s infinite alternate;
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+        }
+
+        @keyframes titleGlow { from { text-shadow: 0 0 30px var(--color-primary); } to { text-shadow: 0 0 45px var(--color-primary), 0 0 25px var(--color-shadow); } }
+
+        /* 💖 التعديل الحاسم: لوضع القلب فوق العنوان تماماً وبمسافة كبيرة 💖 */
+        .section-title {
+            font-family: var(--font-headings); color: var(--color-secondary);
+            font-size: clamp(2rem, 6vw, 2.8rem); text-align: center;
+            /* توهج باللون الأزرق الفاتح */
+            text-shadow: 0 0 15px var(--color-secondary), 0 0 5px var(--color-primary);
+            letter-spacing: 1px;
+            position: relative;
+
+            padding-top: 70px; /* **تمت زيادة هذه القيمة لترك مساحة كافية بين القلب والنص** */
+            padding-bottom: 0px;
+            margin-bottom: 2rem;
+            line-height: 1.2;
+        }
+
+        .section-title::before { /* استخدام ::before لوضعه قبل النص (في الأعلى) */
+            /* قلب زهري كيوت ينبض */
+            content: '💌';
+            position: absolute;
+            top: -20px; /* **تم التعديل هنا لرفع القلب فوق حدود العنصر الأب** */
+            left: 50%;
+            transform: translateX(-50%); /* لتوسيط القلب أفقياً */
+            color: var(--color-primary);
+            font-size: 1.8em;
+            text-shadow: 0 0 10px var(--color-shadow);
+            animation: heartBeat 1.5s infinite;
+            z-index: 1;
+        }
+
+        @keyframes heartBeat { 0%, 100% { transform: translateX(-50%) scale(1); } 50% { transform: translateX(-50%) scale(1.1); } }
+
+        p {
+            font-size: clamp(1rem, 2.5vw, 1.2rem); line-height: 2.1;
+            text-align: justify; margin-bottom: 1.5rem;
+        }
+
+        strong { color: var(--color-secondary); font-weight: 700; text-shadow: 0 0 8px var(--color-shadow); }
+
+        .main-header { text-align: center; margin-bottom: 3rem; }
+        .main-image {
+            width: clamp(150px, 40vw, 200px); height: clamp(150px, 40vw, 200px);
+            object-fit: cover; border-radius: 50%;
+            border: 5px solid var(--color-secondary); /* حدود زرقاء ناعمة */
+            /* ظل زهري وأزرق */
+            box-shadow: 0 0 40px var(--color-shadow), 0 0 60px var(--color-primary);
+            margin-bottom: 2rem; transition: transform 0.6s ease;
+        }
+        .main-image:hover { transform: scale(1.05) rotate(3deg); }
+        .message-details {
+            font-style: italic; font-size: 1.1em; padding: 20px;
+            /* خلفية زهرية شفافة */
+            background: rgba(255, 105, 180, 0.08);
+            border-radius: 15px;
+            display: inline-block; border: 1px solid rgba(173, 216, 230, 0.3);
+        }
+
+        .gallery-container {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px; margin-top: 2rem; perspective: 1000px;
+        }
+
+        .gallery-item {
+            aspect-ratio: 1 / 1; position: relative; cursor: pointer;
+            transition: transform 0.8s; transform-style: preserve-3d;
+        }
+        .gallery-item-face { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 15px; overflow: hidden; }
+        .gallery-item-front { border: 3px solid var(--color-secondary); background-size: cover; background-position: center; display: flex; align-items: flex-end; }
+        .gallery-item-front span { width: 100%; background: rgba(0, 0, 0, 0.7); color: var(--color-secondary); text-align: center; padding: 10px; font-family: var(--font-headings); font-size: 1.2em; }
+        .gallery-item-back { background: linear-gradient(135deg, var(--color-primary), var(--bg-color-dark)); color: white; transform: rotateY(180deg); display: flex; justify-content: center; align-items: center; padding: 20px; text-align: center; font-size: 1.1em; border: 3px solid var(--color-secondary); }
+        .gallery-item:hover { transform: rotateY(180deg); }
+
+        .poem { background: rgba(0,0,0,0.25); border-right: 4px solid var(--color-secondary); padding: 30px; border-radius: 10px; text-align: center; }
+        .poem p { font-size: 1.4em; font-family: var(--font-headings); line-height: 2.5; }
+
+        .love-reasons-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; }
+        .reason-button {
+            background: transparent; border: 2px solid var(--color-primary); color: var(--color-primary);
+            padding: 20px; border-radius: 10px; font-size: 1.1em; cursor: pointer; transition: all 0.4s ease;
+        }
+        .reason-button:hover { background: var(--color-primary); color: var(--bg-color-dark); transform: translateY(-5px); }
+        #reason-display { margin-top: 30px; padding: 25px; background: rgba(0,0,0,0.3); border-radius: 10px; text-align: center; font-size: 1.3em; min-height: 100px; transition: opacity 0.5s; }
+
+        #settings-panel { position: fixed; top: 20px; left: -250px; width: 220px; background: rgba(10, 10, 10, 0.9); backdrop-filter: blur(10px); border: 1px solid var(--color-secondary); border-radius: 0 15px 15px 0; padding: 20px; z-index: 1000; transition: left 0.5s ease; }
+        #settings-panel.open { left: 0; }
+        #settings-toggle { position: absolute; top: 0; right: -50px; width: 50px; height: 50px; background: var(--color-secondary); border: none; border-radius: 0 10px 10px 0; cursor: pointer; font-size: 24px; }
+        .settings-content h4 { color: var(--color-secondary); margin-bottom: 15px; }
+        .color-options { display: flex; gap: 10px; }
+        .color-box { width: 30px; height: 30px; border-radius: 50%; cursor: pointer; border: 2px solid transparent; transition: all 0.3s; }
+        .color-box.selected { border-color: white; }
+        .color-box:hover { transform: scale(1.1); }
+
+        /* Countdown Timer Styles */
+        #countdown-timer { display: flex; justify-content: center; gap: clamp(0.5rem, 4vw, 1.5rem); margin-top: 2rem; text-align: center; flex-wrap: wrap; }
+        .timer-unit { background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 15px; border: 1px solid var(--color-secondary); min-width: 90px; }
+        .timer-unit span { font-size: clamp(2em, 8vw, 3em); font-weight: bold; color: var(--color-primary); display: block; }
+        .timer-unit label { font-size: 1em; }
+
+        /* Timeline Styles */
+        .timeline { position: relative; max-width: 750px; margin: 0 auto; padding: 2rem 0; }
+        .timeline::after { content: ''; position: absolute; width: 4px; background: var(--color-primary); top: 0; bottom: 0; right: 50%; transform: translateX(50%); z-index: 0; box-shadow: 0 0 10px var(--color-shadow); }
+        .timeline-item { padding: 10px 40px; position: relative; width: 50%; opacity: 0; transition: all 0.8s ease; }
+        .timeline-item:nth-child(odd) { right: 0; transform: translateX(100px); }
+        .timeline-item:nth-child(even) { left: 0; transform: translateX(-100px); }
+        .timeline-item.visible { opacity: 1; transform: translateX(0); }
+        .timeline-item::after { content: ''; position: absolute; width: 20px; height: 20px; background: var(--bg-color-dark); border: 4px solid var(--color-secondary); top: 25px; border-radius: 50%; z-index: 1; }
+        .timeline-item:nth-child(odd)::after { right: -12px; }
+        .timeline-item:nth-child(even)::after { left: -12px; }
+        .timeline-content { padding: 20px; background: rgba(0,0,0,0.3); border-radius: 10px; }
+        .timeline-content h3 { color: var(--color-secondary); font-family: var(--font-headings); }
+        .timeline-content .date { font-weight: bold; color: var(--color-primary); margin-bottom: 0.5rem; display: block; }
+        @media (max-width: 768px) {
+            .timeline::after { right: 31px; transform: none; }
+            .timeline-item { width: 100%; padding-left: 70px; padding-right: 25px; }
+            .timeline-item:nth-child(odd), .timeline-item:nth-child(even) { left: 0; right: auto; transform: translateX(-100px); }
+            .timeline-item:nth-child(odd)::after, .timeline-item:nth-child(even)::after { left: 19px; }
+        }
+
+        /* Constellation Map Styles */
+        #constellation-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            height: 350px;
+            margin: 2rem auto 0;
+        }
+        #constellation-canvas { display: block; width: 100%; height: 100%; }
+
+        #constellation-tooltip {
+            position: absolute;
+            background: rgba(0,0,0,0.8);
+            color: var(--color-secondary);
+            padding: 10px;
+            border-radius: 5px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 10;
+            font-size: 0.9em;
+            white-space: nowrap;
+            transform: translate(-50%, -100%);
+        }
+
+        /* Music Player Styles */
+        .music-player { background: rgba(0,0,0,0.3); border-radius: 20px; padding: 1.5rem; border: 1px solid rgba(173, 216, 230, 0.4); }
+        #now-playing { text-align: center; margin-bottom: 1rem; font-size: 1.1em; color: var(--color-secondary); font-weight: bold; min-height: 25px; }
+        #playlist { list-style: none; padding: 0; margin-bottom: 1.5rem; }
+        #playlist li { padding: 12px 15px; border-radius: 10px; cursor: pointer; transition: background 0.3s; display: flex; align-items: center; gap: 10px; }
+        #playlist li:hover { background-color: rgba(255,105,180,0.1); }
+        #playlist li.active { background-color: rgba(173, 216, 230, 0.25); color: var(--color-primary); font-weight: bold; }
+        .music-controls { display: flex; justify-content: center; align-items: center; }
+        #play-pause-btn { background: var(--color-primary); border: none; border-radius: 50%; width: 60px; height: 60px; cursor: pointer; display: flex; justify-content: center; align-items: center; box-shadow: 0 0 20px var(--color-shadow); transition: transform 0.2s; }
+        #play-pause-btn:hover { transform: scale(1.1); }
+        #play-pause-btn svg { width: 30px; height: 30px; fill: var(--bg-color-dark); }
+
+        #heart-canvas { display: block; margin: 30px auto 0; cursor: grab; }
+        h1, p { cursor: inherit; }
+        .gallery-item, .reason-button, #settings-toggle, .color-box, #playlist li, .section-title { cursor: pointer; }
+
+
+    </style>
+</head>
+<body>
+
+
+    <div id="cursor-dot"></div>
+    <div id="stars-background"></div>
+
+    <div id="settings-panel">
+        <button id="settings-toggle">⚙️</button>
+        <div class="settings-content">
+            <h4>لون النجوم</h4>
+            <div class="color-options">
+                <div class="color-box selected" style="background: white;" data-color="white"></div>
+                <div class="color-box" style="background: #FF69B4;" data-color="#FF69B4"></div>
+                <div class="color-box" style="background: #add8e6;" data-color="#add8e6"></div>
+                <div class="color-box" style="background: #FFD700;" data-color="#FFD700"></div>
+            </div>
+        </div>
+    </div>
+
+    <main class="love-letter-container">
+
+        <header class="main-header">
+            <img src="https://i.ibb.co/3mdfqt0r/14.jpg" alt="صورة رمزية للحب بين قيس ومروة" class="main-image">
+            <h1>إلى روحي و ملاكي مروة</h1>
+            <div class="message-details">
+                <p><strong>من :</strong> قيس،  الذي ينبض بحبك.</p>
+                <p><strong>إلى :</strong> مروة، نور عيوني و كل دنيتي.</p>
+            </div>
+        </header>
+
+        <section class="section">
+            <h2 class="section-title"> رسالتي التي لن تنتهي </h2>
+            <p>مروة يا أغلى ما في وجودي أكتب لكِ هذه الكلمات ليس لأنها قادرة على وصف ما في قلبي بل لأنها محاولة بائسة لترجمة بحر من المشاعر الذي يفيض بي كلما فكرت فيكِ لأن أنتِ لستِ مجرد جزء من عالمي، بل أنتِ <strong>عالمي بأكمله</strong>. أنتِ تلك الوردة النادرة التي تضيء كل أيامي حتى في أحلك اللحظات.</p>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title"> خط زمني لذكرياتنا 🗺️</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="date">29 يونيو 2024</span>
+                        <h3>اليوم الذي تغير فيه كل شيء</h3>
+                        <p>بداية حكايتنا و في هذا اليوم لم أكن أعلم أنني قد وجدتُ نصف روحي الآخر.</p>
+                    </div>
+                </div>
+                 <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="date">29 يوليو 2024</span>
+                        <h3>الإعتراف تحت النجوم</h3>
+                        <p>وعدنا بعضنا البعض بالبقاء معًا إلى الأبد و كانت السماء شاهدة على إعترافنا بحبنا.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="photo-memories">
+            <h2 class="section-title">ذكرياتنا الخالدة</h2>
+            <div class="gallery-container">
+                <div class="gallery-item">
+                    <div class="gallery-item-face gallery-item-front" style="background-image: url('https://i.ibb.co/BDyyHqS/image.jpg');"><span>بداية المشوار</span></div>
+                    <div class="gallery-item-face gallery-item-back"><span>هنا بدأت حكايتنا التي لا تشبه أي حكاية.</span></div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-item-face gallery-item-front" style="background-image: url('https://i.ibb.co/Hfvw6Bpz/image.jpg');"><span>ضحكة من القلب</span></div>
+                    <div class="gallery-item-face gallery-item-back"><span>ضحكتكِ هي اللحن الذي يعزف لحن السعادة في روحي.</span></div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-item-face gallery-item-front" style="background-image: url('https://i.ibb.co/fG0KB8K2/image.jpg');"><span>وعد أبدي</span></div>
+                    <div class="gallery-item-face gallery-item-back"><span>وعدي لكِ أن أبقى السند والحب الأبدي.</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="poem-section">
+            <h2 class="section-title"> قصيدة لكِ 📜</h2>
+            <div class="poem">
+                <p>"وَاللَهِ ما طَلَعَت شَمسٌ وَلا غَرُبَت<br>إِلّا وَحُبُّكَ مَقرونٌ بِأَنفاسي<br>وَلا جَلَستُ إِلى قَومٍ أُحَدِّثُهُم<br>إِلّا وَأَنتَ حَديثي بَينَ جُلّاسي"</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title"> كوكبة "مروة" النجمية ✨</h2>
+            <p>كوكبة "مروة" التي تتألق باسمكِ، تضيء سمائي. حركي الفأرة على النجوم في الأسفل لاكتشاف أسرارها...</p>
+            <div id="constellation-container">
+                <canvas id="constellation-canvas"></canvas>
+                <div id="constellation-tooltip"></div>
+            </div>
+        </section>
+
+        <section class="section" id="love-reasons">
+            <h2 class="section-title"> لماذا أحبكِ؟ 😽</h2>
+            <p>قد تسألينني لماذا أحبكِ، والحقيقة أن الأسباب لا تعد ولا تحصى. اضغطي على زر لتعرفي بعضها...</p>
+            <div class="love-reasons-container">
+                <button class="reason-button" data-reason="لأن قلبكِ هو أطيب وأنقى ما عرفت في حياتي. إنه ملاذي الآمن.">بسبب قلبكِ</button>
+                <button class="reason-button" data-reason="لأن ضحكتكِ لها القدرة السحرية على محو كل همومي وتحويل يومي إلى ربيع.">بسبب ضحكتكِ</button>
+                <button class="reason-button" data-reason="لأنكِ ترين أفضل ما فيّ حتى عندما لا أراه بنفسي. إيمانكِ بي هو وقودي.">بسبب إيمانكِ بي</button>
+                <button class="reason-button" data-reason="لأنكِ تجعلين أبسط الأشياء تبدو وكأنها مغامرة رائعة. معكِ، كل لحظة لها قيمة.">بسبب روحكِ</button>
+            </div>
+            <div id="reason-display">...</div>
+        </section>
+
+        <section class="section" id="future-dream">
+            <h2 class="section-title">حلمي الأكبر : مستقبلنا معًا 🏡 </h2>
+            <p><strong>أحلم باليوم الذي لا تفصلنا فيه أي مسافات،</strong> اليوم الذي أستيقظ فيه وأرى وجهكِ الجميل بجانبي. أحلم بمنزلنا الدافئ و بضحكاتنا التي تملأ المكان و بحياة مليئة بالتفاصيل الصغيرة التي نشاركها. كل خطة أرسمها، و كل أمل أتمناه، أنتِ محوره. <strong>وعدي لكِ أن المستقبل سيكون أجمل لأنه سيجمعنا أخيرًا.</strong></p>
+        </section>
+
+        <footer class="main-footer">
+             <h2 class="section-title"> أغنية تصف جمالك 🎶</h2>
+            <div class="music-player">
+                <div id="now-playing">اختاري أغنية لتبدأ الموسيقى...</div>
+                <ul id="playlist">
+                    <li data-src="https://od.lk/s/MjhfNDE2NTU5Mzhf/%D8%A3%D8%BA%D9%86%D9%8A%D8%A9%20%D8%A7%D9%84%D8%A8%D9%86%D8%AA%20%D8%A7%D9%84%D8%B4%D9%84%D8%A8%D9%8A%D8%A9%20-%20%D9%81%D9%8A%D8%B1%D9%88%D8%B2.mp3"> أغنية البنت الشلبية - فيروز</li>
+                </ul>
+                <div class="music-controls">
+                    <button id="play-pause-btn">
+                        <svg id="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
+                        <svg id="pause-icon" viewBox="0 0 24 24" style="display:none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"></path></svg>
+                    </button>
+                </div>
+            </div>
+
+            <h2 class="section-title" style="margin-top: 4rem;"> قلبي ينبض لكِ ❤️</h2>
+            <p>هذا القلب في الأسفل يمثل قلبي. إنه ملككِ وحدكِ.</p>
+            <canvas id="heart-canvas"></canvas>
+        </footer>
+
+    </main>
+
+    <script>
+        "use strict";
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeScrollAnimations();
+            initializeSettingsPanel();
+            initializeCursorAndTrail();
+            createStarryBackground();
+            initializeUpgradedMusicPlayer();
+            initializeLoveReasons();
+            initializeBeatingHeart();
+            initializeCountdownTimer();
+            initializeTimelineObserver();
+            initializeConstellationMap();
+            console.log("رسالة الحب الفاخرة المحدثة والكيوت جاهزة لتبهر مروة 💖");
+        });
+
+        // =============================================
+        // الدوال المساعدة
+        // =============================================
+
+        function initializeSettingsPanel() {
+            const panel = document.getElementById('settings-panel');
+            if (!panel) return;
+            const toggleBtn = document.getElementById('settings-toggle');
+            const colorBoxes = document.querySelectorAll('.color-box');
+
+            const savedColor = localStorage.getItem('starColor') || 'white';
+            document.documentElement.style.setProperty('--star-color', savedColor);
+
+            toggleBtn.addEventListener('click', () => panel.classList.toggle('open'));
+
+            colorBoxes.forEach(box => {
+                if (box.dataset.color === savedColor) box.classList.add('selected');
+
+                box.addEventListener('click', () => {
+                    const newColor = box.dataset.color;
+                    document.documentElement.style.setProperty('--star-color', newColor);
+                    localStorage.setItem('starColor', newColor);
+                    document.querySelector('.color-box.selected')?.classList.remove('selected');
+                    box.classList.add('selected');
+                    // إعادة إنشاء النجوم باللون الجديد
+                    createStarryBackground();
+                });
+            });
+        }
+
+        function initializeCursorAndTrail() {
+            const cursorDot = document.getElementById('cursor-dot');
+            if (!cursorDot) return;
+
+            window.addEventListener('mousemove', e => {
+                cursorDot.style.left = e.clientX + 'px';
+                cursorDot.style.top = e.clientY + 'px';
+
+                let trail = document.createElement('div');
+                trail.className = 'trail';
+                document.body.appendChild(trail);
+
+                const size = Math.random() * 6 + 2;
+                trail.style.width = size + 'px';
+                trail.style.height = size + 'px';
+                trail.style.left = e.clientX + 'px';
+                trail.style.top = e.clientY + 'px';
+
+                setTimeout(() => trail.remove(), 1000);
+            });
+        }
+
+        function createStarryBackground() {
+            const starContainer = document.getElementById('stars-background');
+            if (!starContainer) return;
+
+            // إزالة النجوم القديمة قبل إنشاء الجديدة
+            starContainer.innerHTML = '';
+
+            const numberOfStars = 200;
+            for (let i = 0; i < numberOfStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                const size = Math.random() * 3 + 1;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.top = `${Math.random() * 100}%`;
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.animationDelay = `${Math.random() * 5}s`;
+                star.style.animationDuration = `${Math.random() * 3 + 4}s`;
+                starContainer.appendChild(star);
+            }
+        }
+
+        function initializeScrollAnimations() {
+            const sections = document.querySelectorAll('.section');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15 });
+            sections.forEach(section => observer.observe(section));
+        }
+
+        function initializeUpgradedMusicPlayer() {
+            const playlistItems = document.querySelectorAll('#playlist li');
+            if (playlistItems.length === 0) return;
+
+            const nowPlaying = document.getElementById('now-playing');
+            const playPauseBtn = document.getElementById('play-pause-btn');
+            const playIcon = document.getElementById('play-icon');
+            const pauseIcon = document.getElementById('pause-icon');
+
+            let audio = new Audio();
+            let currentTrackIndex = -1;
+
+            playlistItems.forEach((item, index) => {
+                item.addEventListener('click', () => playTrack(index));
+            });
+
+            playPauseBtn.addEventListener('click', () => {
+                if (audio.paused && audio.src) audio.play();
+                else audio.pause();
+            });
+
+            audio.addEventListener('play', updatePlayPauseIcon);
+            audio.addEventListener('pause', updatePlayPauseIcon);
+
+            function playTrack(index) {
+                if (index === currentTrackIndex && !audio.paused) return;
+                currentTrackIndex = index;
+                const track = playlistItems[index];
+                audio.src = track.dataset.src;
+                audio.play().catch(e => console.error("Error playing audio:", e));
+                nowPlaying.textContent = `تعمل الآن: ${track.textContent.trim()}`;
+                document.querySelector('#playlist li.active')?.classList.remove('active');
+                track.classList.add('active');
+            }
+
+            function updatePlayPauseIcon() {
+                playIcon.style.display = audio.paused ? 'block' : 'none';
+                pauseIcon.style.display = audio.paused ? 'none' : 'block';
+            }
+        }
+
+        function initializeLoveReasons() {
+            const reasonButtons = document.querySelectorAll('.reason-button');
+            if(reasonButtons.length === 0) return;
+            const reasonDisplay = document.getElementById('reason-display');
+
+            reasonButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    reasonDisplay.style.opacity = 0;
+                    setTimeout(() => {
+                        reasonDisplay.textContent = button.dataset.reason;
+                        reasonDisplay.style.opacity = 1;
+                    }, 300);
+                });
+            });
+        }
+
+        function initializeBeatingHeart() {
+            const canvas = document.getElementById('heart-canvas');
+            if(!canvas) return;
+            const ctx = canvas.getContext('2d');
+            canvas.width = 300; canvas.height = 300;
+
+            let scale = 1, pumping = true;
+
+            const drawHeart = (x, y, width, height) => {
+                ctx.save();
+                ctx.beginPath();
+                ctx.translate(x, y);
+                ctx.scale(scale, scale);
+                ctx.moveTo(0, 0);
+                // تم تغيير الألوان هنا لتناسب الزهري الجديد
+                ctx.bezierCurveTo(width / 2, -height / 2, width, -height / 4, 0, height / 2);
+                ctx.bezierCurveTo(-width, -height / 4, -width / 2, -height / 2, 0, 0);
+                const gradient = ctx.createRadialGradient(0, 0, 5, 0, 0, 90);
+                gradient.addColorStop(0, '#FFC0CB'); /* زهري فاتح */
+                gradient.addColorStop(1, '#FF69B4'); /* زهري غامق */
+                ctx.fillStyle = gradient;
+                ctx.shadowColor = 'rgba(255,192,203,0.7)';
+                ctx.shadowBlur = 20;
+                ctx.fill();
+                ctx.closePath();
+                ctx.restore();
+            };
+
+            const animate = () => {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                scale += (pumping ? 0.005 : -0.005);
+                if (scale > 1.1) pumping = false;
+                if (scale < 1) pumping = true;
+                drawHeart(canvas.width / 2, canvas.height / 2, 80, 80);
+                requestAnimationFrame(animate);
+            };
+            animate();
+        }
+
+        function initializeCountdownTimer() {
+            // التاريخ الافتراضي (يمكنك تغييره في HTML إذا أردت)
+            const countdownDate = new Date("Dec 25, 2026 18:00:00").getTime();
+            const timerInterval = setInterval(() => {
+                const now = new Date().getTime();
+                const distance = countdownDate - now;
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                if (document.getElementById("days")) document.getElementById("days").textContent = days.toString().padStart(2, '0');
+                if (document.getElementById("hours")) document.getElementById("hours").textContent = hours.toString().padStart(2, '0');
+                if (document.getElementById("minutes")) document.getElementById("minutes").textContent = minutes.toString().padStart(2, '0');
+                if (document.getElementById("seconds")) document.getElementById("seconds").textContent = seconds.toString().padStart(2, '0');
+
+                if (distance < 0) {
+                    clearInterval(timerInterval);
+                    if (document.getElementById("countdown-timer")) {
+                        document.getElementById("countdown-timer").innerHTML = '<div style="color: var(--color-primary); font-size: 1.5em; font-family: var(--font-headings);">🎉 لقد التقينا! والأبد بدأ! 🎉</div>';
+                    }
+                }
+            }, 1000);
+        }
+
+        function initializeTimelineObserver() {
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.2 });
+            timelineItems.forEach(item => observer.observe(item));
+        }
+
+        // =============================================
+        // دالة الكوكبة النجمية بشكل حرف M
+        // =============================================
+        function initializeConstellationMap() {
+            const canvas = document.getElementById('constellation-canvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const container = document.getElementById('constellation-container');
+            const tooltip = document.getElementById('constellation-tooltip');
+
+            // نقاط الكوكبة لتشكيل حرف M
+            const points = [
+                // النقاط الأساسية لحرف M
+                { name: "بداية الميم", x: 0.1, y: 0.9, info: "أول خطوة في عالمي" },   // 0: أسفل اليسار
+                { name: "قمة الحب", x: 0.1, y: 0.1, info: "حبنا يرتفع عالياً" },    // 1: أعلى اليسار
+                { name: "نقطة الوصل الأولى", x: 0.3, y: 0.5, info: "حيث تتصل قلوبنا" },  // 2: منتصف اليسار (قاعدة الرقم 7)
+                { name: "منتصف الميم", x: 0.5, y: 0.1, info: "في قلب كل شيء" },   // 3: قمة الوسط
+                { name: "نقطة الوصل الثانية", x: 0.7, y: 0.5, info: "حبنا ينمو ويتصل" }, // 4: منتصف اليمين (قاعدة الرقم 8)
+                { name: "نجمة مروة", x: 0.9, y: 0.1, info: "اسمكِ يتلألأ" },     // 5: أعلى اليمين
+                { name: "نهاية الميم", x: 0.9, y: 0.9, info: "حب أبدي لا ينتهي" }    // 6: أسفل اليمين
+            ];
+
+            // الروابط التي تشكل حرف M
+            const lines = [
+                [0, 1],
+                [1, 2],
+                [2, 3],
+                [3, 4],
+                [4, 5],
+                [5, 6]
+            ];
+
+            const drawConstellation = () => {
+                canvas.width = container.clientWidth;
+                canvas.height = container.clientHeight;
+
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                // رسم الخطوط (أزرق فاتح وناعم)
+                ctx.beginPath();
+                ctx.strokeStyle = '#ADD8E6';
+                ctx.lineWidth = 1.5;
+                ctx.shadowColor = '#ADD8E6';
+                ctx.shadowBlur = 10;
+                lines.forEach(([start, end]) => {
+                    const p1 = points[start];
+                    const p2 = points[end];
+                    ctx.moveTo(p1.x * canvas.width, p1.y * canvas.height);
+                    ctx.lineTo(p2.x * canvas.width, p2.y * canvas.height);
+                });
+                ctx.stroke();
+
+                // رسم النجوم (زهري لامع)
+                ctx.shadowBlur = 0;
+                points.forEach(p => {
+                    const x = p.x * canvas.width;
+                    const y = p.y * canvas.height;
+
+                    ctx.beginPath();
+                    ctx.arc(x, y, 4, 0, Math.PI * 2);
+                    ctx.fillStyle = '#FF69B4'; // زهري أساسي
+                    ctx.shadowColor = '#FF69B4';
+                    ctx.shadowBlur = 15;
+                    ctx.fill();
+                    // إضافة وميض أبيض صغير
+                    ctx.beginPath();
+                    ctx.arc(x, y, 1.5, 0, Math.PI * 2);
+                    ctx.fillStyle = 'white';
+                    ctx.fill();
+                });
+            };
+
+            drawConstellation();
+            window.addEventListener('resize', drawConstellation);
+
+            canvas.addEventListener('mousemove', (e) => {
+                const rect = canvas.getBoundingClientRect();
+                const mouseX = e.clientX - rect.left;
+                const mouseY = e.clientY - rect.top;
+                let foundPoint = null;
+
+                points.forEach(p => {
+                    const x = p.x * canvas.width;
+                    const y = p.y * canvas.height;
+                    const distance = Math.sqrt(Math.pow(mouseX - x, 2) + Math.pow(mouseY - y, 2));
+
+                    if (distance < 10) {
+                        foundPoint = p;
+                    }
+                });
+
+                if (foundPoint) {
+                    tooltip.style.opacity = 1;
+                    tooltip.innerHTML = `<strong>${foundPoint.name}</strong><br>${foundPoint.info}`;
+                    tooltip.style.left = `${mouseX}px`;
+                    tooltip.style.top = `${mouseY}px`;
+                } else {
+                    tooltip.style.opacity = 0;
+                }
+            });
+
+            canvas.addEventListener('mouseleave', () => {
+                tooltip.style.opacity = 0;
+            });
+        }
+    </script>
+</body>
+</html>
